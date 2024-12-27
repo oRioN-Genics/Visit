@@ -1,0 +1,67 @@
+.container {
+    padding-left: 1.25rem; 
+    padding-right: 1.25rem; 
+    margin-top: 2.5rem; 
+    max-width: 900px; 
+    margin-left: auto;  
+    margin-right: auto;
+  }
+
+  .container h2 {
+    font-weight: bold;
+    font-size: 1.875rem; 
+  }
+
+  .container .choices {
+    font-size: 1.25rem; 
+    margin-top: 0.75rem; 
+    margin-bottom: 0.75rem; 
+    font-weight: 500; 
+  }
+
+  .input-field {
+    width: 99%;
+    height: 22px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    padding: 6px 0;
+    font-size: 16px;
+    background-color: white;
+    color: #333;
+    padding-left: 10px;
+  }
+  
+  .container p {
+    color: #6B7280;
+    margin-top: 0.75rem;
+  }
+  
+  @media (min-width: 640px) { /* sm */
+    .container {
+      padding-left: 2.5rem; 
+      padding-right: 2.5rem; 
+    }
+  }
+  
+  @media (min-width: 768px) { /* md */
+    .container {
+      padding-left: 8rem; 
+      padding-right: 8rem; 
+    }
+  }
+  
+  @media (min-width: 1024px) { /* lg */
+    .container {
+      padding-left: 24rem; 
+      padding-right: 24rem; 
+    }
+  }
+  
+  @media (min-width: 1280px) { /* xl */
+    .container {
+      padding-left: 2.5rem; 
+      padding-right: 2.5rem; 
+    }
+  }
+  
