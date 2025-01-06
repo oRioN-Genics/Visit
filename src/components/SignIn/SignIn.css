@@ -1,0 +1,129 @@
+/* Main container for the sign-in page */
+.signin-container {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Left side styling */
+  .signin-left {
+    flex: 1;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .signin-left h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .signin-left p {
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  /* Right side styling */
+  .signin-right {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signin-right h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .signin-right p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+  }
+  
+  .signin-right p a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .signin-right p a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Form styling */
+  .signin-form {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-group input:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+  
+  .forgot-password {
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    text-align: right;
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  
+  .checkbox-group label {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  /* Button styling */
+  .signin-button {
+    margin-left: 13px;
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background-color: #6986f1;
+    transition: background-color 0.3s;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .signin-button:hover {
+    background-color: #104a89;
+  }
+  

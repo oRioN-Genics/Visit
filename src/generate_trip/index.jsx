@@ -4,6 +4,8 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { AI_PROMPT, SelectBudgetStyles, SelectTravelsList } from '../constants/options';
 import Toast from '../components/Toast';
 import { chatSession } from '../AI/AI_model';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/AuthContext.jsx';
 
 
 function GenerateTrip() {
@@ -11,6 +13,8 @@ function GenerateTrip() {
 
   const [formData, setFormData] = useState([]);
   const [toastMessage, setToastMessage] = useState('');
+  const { isSignedIn } = useAuth();
+  const navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
     setFormData({
@@ -25,6 +29,14 @@ function GenerateTrip() {
 
 
   const OnGenerateTrip=async()=>{
+    if (!isSignedIn) {
+      if (!toastMessage) {
+        setToastMessage('Please sign in to generate a trip!');
+      }
+      navigate('/signin'); // Redirect to sign-in page
+      return;
+    }
+
     if (!formData?.duration||!formData?.place||!formData?.budget||!formData?.traveling_with) {
       setToastMessage('Please fill out the entire form!');
       return;

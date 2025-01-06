@@ -5,6 +5,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import GenerateTrip from './generate_trip/index.jsx'
 import Head from './components/Head.jsx'
+import { AuthProvider } from './Context/AuthContext.jsx'
+import SignIn from './components/SignIn/SignIn.jsx'
+import SignUp from './components/SignUp/SignUp.jsx'
 
 
 const router = createBrowserRouter([
@@ -15,13 +18,24 @@ const router = createBrowserRouter([
   {
     path: '/generate_trip',
     element: <GenerateTrip />
-  }
+  },
+  {
+    path: '/signin',
+    element: <SignIn />,
+  },
+  {
+    path: '/signup',
+    element: <SignUp />,
+  },
+  
 ])
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Head />
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <Head />
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
