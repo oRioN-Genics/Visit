@@ -13,7 +13,6 @@ function GenerateTrip() {
 
   const [formData, setFormData] = useState([]);
   const [toastMessage, setToastMessage] = useState('');
-  const { isSignedIn } = useAuth();
   const navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
@@ -29,13 +28,13 @@ function GenerateTrip() {
 
 
   const OnGenerateTrip=async()=>{
-    if (!isSignedIn) {
-      if (!toastMessage) {
-        setToastMessage('Please sign in to generate a trip!');
-      }
-      navigate('/signin'); // Redirect to sign-in page
-      return;
-    }
+    // if (!isSignedIn) {
+    //   if (!toastMessage) {
+    //     setToastMessage('Please sign in to generate a trip!');
+    //   }
+    //   navigate('/signin'); // Redirect to sign-in page
+    //   return;
+    // }
 
     if (!formData?.duration||!formData?.place||!formData?.budget||!formData?.traveling_with) {
       setToastMessage('Please fill out the entire form!');

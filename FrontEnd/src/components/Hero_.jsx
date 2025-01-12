@@ -11,7 +11,7 @@ function Hero_() {
       <p className='hero-subheading'>
         Plan with ease, book with confidence, and explore with joy—your next adventure starts here
       </p>
-      <Link to='/generate_trip'>
+      <Link to='/signin'>
         <button> Start Your Journey → </button>
       </Link>
     </div>
