@@ -6,16 +6,12 @@ const travelPlanSchema = new mongoose.Schema({
     ref: "User", // Reference to the User model
     required: true,
   },
-  destination: {
+  trip: {
     type: String,
     required: true,
   },
-  duration: {
-    type: Number,
-    required: true,
-  },
-  budget: {
-    type: Number,
+  userSelection: {
+    type: Object,
     required: true,
   },
 });

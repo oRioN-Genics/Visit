@@ -8,6 +8,7 @@ import Head from './components/Head.jsx'
 import { AuthProvider } from './Context/AuthContext.jsx'
 import SignIn from './components/SignIn/SignIn.jsx'
 import SignUp from './components/SignUp/SignUp.jsx'
+import ViewTrip from './view_trip/[tripID]/index.jsx'
 
 
 const router = createBrowserRouter([
@@ -27,7 +28,10 @@ const router = createBrowserRouter([
     path: '/signup',
     element: <SignUp />,
   },
-  
+  {
+    path: '/view_trip/:tripID',
+    element: <ViewTrip />,
+  },
 ])
 
 

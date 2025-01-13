@@ -25,7 +25,12 @@ function SignIn() {
         password: formData.password,
       });
 
-      alert(response.data.message);  
+      const { token, message, username } = response.data;
+
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("username", username);
+
+      alert(message);  
       navigate('/generate_trip');  // redirect to the GenerateTrip page
     } catch (error) {
       setError(error.response.data.message);  

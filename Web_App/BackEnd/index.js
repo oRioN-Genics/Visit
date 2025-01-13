@@ -1,9 +1,12 @@
-const express = require('express')
 require('dotenv').config();
+
+const express = require('express')
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
+const jwt = require("jsonwebtoken"); 
 const User = require('./models/user.model.js');
+const TravelPlan = require('./models/travelPlan.model');
 const PORT = 5000;
 const app = express()
 
@@ -14,6 +17,24 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello from Node API server....');
 });
+
+
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Access token required" });
+  }
+
+  jwt.verify(token, "your_secret_key", (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: "Invalid token" });
+    }
+    req.user = user; 
+    next();
+  });
+};
 
 
 app.post('/signup', async (req, res) => {
@@ -57,9 +78,52 @@ app.post('/signup', async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid password. Please try again.' });
     }
-  
-    res.status(200).json({ message: 'Signed in successfully!' });
+
+    const token = jwt.sign({ id: user._id }, "your_secret_key", { expiresIn: "1h" });
+    res.status(200).json({ 
+      message: 'Signed in successfully!',
+      token,
+      username: user.username,
+    });
   });
+
+  
+  app.post('/api/travelPlans', authenticateToken, async (req, res) => {
+    try {
+      const { trip, userSelection } = req.body;
+      const userId = req.user.id; // extract userID from the token
+  
+      if (!trip || !userSelection) {
+        return res.status(400).json({ message: "Trip and user selection are required" });
+      }
+  
+      const newTravelPlan = new TravelPlan({
+        userId,
+        trip,
+        userSelection,
+      });
+  
+      await newTravelPlan.save();
+      res.status(200).json({ message: "Trip saved successfully!",
+                            _id: newTravelPlan._id
+       });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error saving the trip" });
+    }
+  });
+
+  app.get('/view_trip/:tripID', async (req, res) => {
+    const tripID = req.params.tripID;
+    const trip = await TravelPlan.findById(tripID);
+  
+    if (!trip) {
+      return res.status(404).json({ message: "Trip not found" });
+    }
+  
+    res.status(200).json(trip);
+  });
+  
 
 const dbURI = process.env.DB_URI;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })

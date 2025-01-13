@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './index.css'
+import axios from "axios";
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { AI_PROMPT, SelectBudgetStyles, SelectTravelsList } from '../constants/options';
 import Toast from '../components/Toast';
 import { chatSession } from '../AI/AI_model';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../Context/AuthContext.jsx';
 
 
 function GenerateTrip() {
@@ -56,10 +56,36 @@ function GenerateTrip() {
     console.log(PROMPT);
 
     const result = await chatSession.sendMessage(PROMPT);
+    SaveGeneratedTrip(result?.response?.text());
 
     console.log(result?.response?.text());
   }
 
+  const SaveGeneratedTrip = async (trip) => {
+      try {
+      const token = localStorage.getItem("authToken"); 
+  
+      const response = await axios.post("http://localhost:5000/api/travelPlans", {
+        trip,
+        userSelection: formData,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      });
+  
+      console.log("Trip saved successfully:", response.data);
+
+      setToastMessage("Trip saved successfully!");
+
+      navigate(`/view_trip/${response.data._id}`);
+      
+    } catch (error) {
+      console.error("Error saving the trip:", error);
+      setToastMessage("Error saving the trip. Please try again.");
+    }
+  };
+  
 
   return (
     <div className="container">
@@ -95,7 +121,7 @@ function GenerateTrip() {
                       gap: '1.25rem',        
                       marginTop: '1.25rem',}}>
           {SelectBudgetStyles.map((item, index) => (
-            <div key={{index}}
+            <div key={index}
               onClick={() => handleInputChange('budget', item.title)}
             className={`choice-options ${formData?.budget === item.title ? 'selected' : ''}`}>
               <h3 style={{ fontSize: '2.25rem', lineHeight: '2.5rem', marginTop:'0.1rem' }}>{item.icon}</h3>
@@ -114,7 +140,7 @@ function GenerateTrip() {
                       gap: '1.25rem',        
                       marginTop: '1.25rem',}}>
           {SelectTravelsList.map((item, index) => (
-            <div key={{index}} 
+            <div key={index}
             onClick={() => handleInputChange('traveling_with', {title: item.title, people: item.people})}
             className={`choice-options ${formData?.traveling_with?.title === item.title ? "selected" : ""}`}>
               <h3 style={{ fontSize: '2.25rem', lineHeight: '2.5rem', marginTop:'0.1rem' }}>{item.icon}</h3>
