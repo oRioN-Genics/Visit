@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Info from './components/info.jsx';
+import Hotels from './components/hotels.jsx'
+import './index.css';
 
 function ViewTrip() {
     const { tripID } = useParams();
-    const { trip, setTrip } = useState([]);
+    const [ trip, setTrip ] = useState([]);
 
     const GetTripData = async (tripID) => {
         try {
@@ -24,11 +26,11 @@ function ViewTrip() {
     }, [tripID]);
 
     return (
-        <div>
+        <div className='container'>
             {/* Information section */}
                 <Info trip={trip}/>
             {/* Recommended hotels */}
-
+                <Hotels trip={trip}/>
             {/* Itinerary */}
         </div>
     );

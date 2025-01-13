@@ -1,0 +1,31 @@
+/* Base padding with drop shadow */
+.container {
+    margin: 2.5rem auto;
+    width: 90%; 
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease; 
+}
+
+/* For medium screens (md: >= 768px) */
+@media (min-width: 768px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* For large screens (lg: >= 1024px) */
+@media (min-width: 1024px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        border-radius: 10px;
+        box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+}
