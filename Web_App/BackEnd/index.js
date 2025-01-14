@@ -113,6 +113,7 @@ app.post('/signup', async (req, res) => {
     }
   });
 
+  
   app.get('/view_trip/:tripID', async (req, res) => {
     const tripID = req.params.tripID;
     const trip = await TravelPlan.findById(tripID);

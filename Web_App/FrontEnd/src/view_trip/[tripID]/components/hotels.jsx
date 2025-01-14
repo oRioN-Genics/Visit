@@ -1,8 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Make sure this import is included
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./hotels.css";
+import HotelCard from "./HotelCard"; 
 
 function Hotels({ trip }) {
+  
+
   let parsedTrip = {};
 
   try {
@@ -43,57 +46,7 @@ function Hotels({ trip }) {
       </h2>
       <div className="hotel-grid">
         {parsedTrip?.hotels?.map((hotel, index) => (
-          <Link
-            key={index}
-            to={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-              `${hotel.hotelName || "Hotel Name not provided"}, ${
-                hotel.address || "Location not provided"
-              }`
-            )}`}
-            style={{ textDecoration: "none" }}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="hotel-card">
-              <img src="/logo.svg" alt="Logo" style={{ borderRadius: 20 }} />
-              <h2 style={{ fontSize: 18, fontWeight: "bold", marginTop: 10 }}>
-                {hotel.hotelName || "Hotel Name Not Available"}
-              </h2>
-              <p style={{ fontSize: 14, color: "#666" }}>
-                {hotel.description || "No description available."}
-              </p>
-              <p
-                style={{
-                  fontSize: 14,
-                  color: "#007BFF",
-                  marginTop: 5,
-                  textAlign: "center",
-                }}
-              >
-                {`📍 ${hotel.address || "Address not provided."}`}
-              </p>
-              <p
-                style={{
-                  fontSize: 14,
-                  color: "#007BFF",
-                  marginTop: 5,
-                  textAlign: "center",
-                }}
-              >
-                {`🪙 ${hotel.price || "Price not provided."}`}
-              </p>
-              <p
-                style={{
-                  fontSize: 14,
-                  color: "#007BFF",
-                  marginTop: 5,
-                  textAlign: "center",
-                }}
-              >
-                {`⭐ ${hotel.rating || "Rating not provided."}`}
-              </p>
-            </div>
-          </Link>
+          <HotelCard key={index} hotel={hotel} /> // Apply the key here
         ))}
       </div>
     </div>

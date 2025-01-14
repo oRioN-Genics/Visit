@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./info.css";
+import { GetPlaceDetails, PHOTO_REF_URL } from "../../../AI/GlobalApi";
+
 
 function Info({ trip }) {
+  const [PHOTO_URL, setPHOTO_URL]=useState();
+
+  useEffect(() => {
+    trip && GetPlacePhoto();
+  }, [trip]);
+
+  const GetPlacePhoto = async () => {
+    const data = {
+      textQuery: trip?.userSelection?.place?.label,
+    };
+
+    const result = await GetPlaceDetails(data).then((resp) => {
+      console.log(resp.data.places[0].photos[2].name);
+
+      const PHOTO_URL = PHOTO_REF_URL.replace('{NAME}', resp.data.places[0].photos[2].name);
+      setPHOTO_URL(PHOTO_URL);
+    });
+  };
+
   return (
-    <div style={{ paddingBottom: 20 }}>
+    <div style={{ paddingBottom: 20, paddingTop: 20 }}>
       <div className="info-container">
-        <img src="/logo.svg" alt="Logo" className="info-image" />
+        <img src={PHOTO_URL || "/logo.svg"} alt="Logo" className="info-image" />
       </div>
 
       <div
