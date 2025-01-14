@@ -32,8 +32,10 @@ function ViewTrip() {
             <div className='container'>
                 {/* Information section */}
                     <Info trip={trip}/>
+                    <div className="section-divider" />
                 {/* Recommended hotels */}
                     <Hotels trip={trip}/>
+                    <div className="section-divider" />
                 {/* Itinerary */}
                     <Itinerary trip={trip}/>
             </div>

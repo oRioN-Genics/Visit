@@ -1,5 +1,5 @@
 import React from 'react';
-import './footer.css'; // Make sure you have a CSS file for the footer styling
+import './footer.css';
 
 function Footer() {
   return (
@@ -8,6 +8,7 @@ function Footer() {
         <p className="footer-text">
           <strong>Created by: Sathsara Anuradha</strong>
         </p>
+        <p className="footer-text">Computer Engineering Undergraduate - University of Ruhuna,</p>
         <p className="footer-text">Email: sathsara2021@gmail.com</p>
         <p className="footer-text">
           Follow me on:

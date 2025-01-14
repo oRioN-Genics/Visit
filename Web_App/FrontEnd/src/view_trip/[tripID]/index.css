@@ -29,3 +29,9 @@
         box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.1);
     }
 }
+
+.section-divider {
+    margin: 20px 0;
+    border-bottom: 2px solid #ddd;
+    background-color: #f0f0f0; 
+}
