@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Info from './components/info.jsx';
 import Hotels from './components/hotels.jsx'
+import Itinerary from './components/itinerary.jsx';
+import Footer from './components/footer.jsx';
 import './index.css';
 
 function ViewTrip() {
@@ -26,12 +28,17 @@ function ViewTrip() {
     }, [tripID]);
 
     return (
-        <div className='container'>
-            {/* Information section */}
-                <Info trip={trip}/>
-            {/* Recommended hotels */}
-                <Hotels trip={trip}/>
-            {/* Itinerary */}
+        <div className='main-container'>
+            <div className='container'>
+                {/* Information section */}
+                    <Info trip={trip}/>
+                {/* Recommended hotels */}
+                    <Hotels trip={trip}/>
+                {/* Itinerary */}
+                    <Itinerary trip={trip}/>
+            </div>
+            {/* Footer */}
+            <Footer/>
         </div>
     );
 }
