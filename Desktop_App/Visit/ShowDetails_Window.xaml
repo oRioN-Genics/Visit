@@ -1,0 +1,64 @@
+﻿<Window x:Class="Visit.ShowDetails_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Visit"
+        mc:Ignorable="d"
+        Title="Users with Travel Plans" Height="600" Width="900">
+    <Grid>
+        <DataGrid x:Name="UsersDataGrid" 
+                  AutoGenerateColumns="False" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  IsReadOnly="True"
+                  Margin="10">
+
+            <DataGrid.Background>
+                <ImageBrush ImageSource="E:\Visit\Desktop_App\Assets\logo.png">
+                    <ImageBrush.AlignmentX>Center</ImageBrush.AlignmentX>
+                    <ImageBrush.AlignmentY>Center</ImageBrush.AlignmentY>
+                    <ImageBrush.Opacity>0.5</ImageBrush.Opacity>
+                    <ImageBrush.Viewport>
+                        <Rect X="0" Y="0" Width="1" Height="1"/>
+                    </ImageBrush.Viewport>
+                    <ImageBrush.TileMode>None</ImageBrush.TileMode>
+                </ImageBrush>
+            </DataGrid.Background>
+
+            <!-- Row Header for Index -->
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=GetIndex}" />
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" 
+                                    Binding="{Binding Index}" 
+                                    Width="50"/>
+                <DataGridTextColumn Header="Username" 
+                                    Binding="{Binding Username}" 
+                                    Width="*"/>
+                <DataGridTextColumn Header="Email" 
+                                    Binding="{Binding Email}" 
+                                    Width="*"/>
+                <DataGridTextColumn Header="Location" 
+                                    Binding="{Binding Location}" 
+                                    Width="*"/>
+                <DataGridTextColumn Header="Duration" 
+                                    Binding="{Binding Duration}" 
+                                    Width="auto"/>
+                <DataGridTextColumn Header="Budget" 
+                                    Binding="{Binding Budget}" 
+                                    Width="auto"/>
+                <DataGridTextColumn Header="Traveling With" 
+                                    Binding="{Binding TravelingWith}" 
+                                    Width="auto"/>
+                <DataGridTextColumn Header="Travel Id" 
+                                    Binding="{Binding TravelId}" 
+                                    Width="auto"/>  
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

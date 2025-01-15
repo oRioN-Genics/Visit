@@ -7,10 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="SignIn_Window.xaml.cs">
+    <Compile Update="ShowDetails_Window.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SignUp_Window.xaml.cs">
+    <Compile Update="SignIn_Window.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -18,10 +18,10 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SignIn_Window.xaml">
+    <Page Update="ShowDetails_Window.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SignUp_Window.xaml">
+    <Page Update="SignIn_Window.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
