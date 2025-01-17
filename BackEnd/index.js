@@ -75,7 +75,7 @@ app.post('/signup', async (req, res) => {
             return res.status(400).json({ message: 'User not found. Please sign up.' });
         }
 
-        if (user.banned) {
+        if (user.access_status == "Banned") {
             return res.status(403).json({ message: 'Your account has been banned. Please contact support.' });
         }
   
@@ -197,12 +197,12 @@ app.post('/signup', async (req, res) => {
         await user.save();
 
         res.status(200).json({ 
-            message: `User ban status updated to ${user.banned ? 'banned' : 'unbanned'}.`,
+            message: `User access status updated.`,
             banned: user.access_status,
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Error updating the user's ban status" });
+        res.status(500).json({ message: "Error updating the user's access status" });
     }
 });
 

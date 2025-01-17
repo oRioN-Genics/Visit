@@ -115,7 +115,7 @@ public static class ApiService
 
             if (response.IsSuccessStatusCode)
             {
-                return $"User ban status updated successfully.";
+                return $"User access status updated successfully.";
             }
             else
             {

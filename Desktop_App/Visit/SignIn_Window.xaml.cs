@@ -42,6 +42,8 @@ namespace Visit
                                 MessageBoxImage.Information);
 
                 SignInButton.IsEnabled = false;
+                LoadingProgressBar.Visibility = Visibility.Visible;
+
                 try
                 {
                     string result = await ApiService.GetUsersWithTravelPlansAsync();
@@ -52,6 +54,7 @@ namespace Visit
 
                         ShowDetails_Window detailsWindow = new ShowDetails_Window(userTravelPlans);
                         detailsWindow.ShowDialog();
+                        this.Close();
                     }
                     else
                     {
@@ -70,6 +73,7 @@ namespace Visit
                 }
                 finally
                 {
+                    LoadingProgressBar.Visibility = Visibility.Collapsed;
                     SignInButton.IsEnabled = true;
 
                     this.Close();

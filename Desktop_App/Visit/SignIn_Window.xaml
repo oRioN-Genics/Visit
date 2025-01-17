@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Visit"
         mc:Ignorable="d"
-        Title="SignIn_Window" Height="450" Width="800">
+        Title="SignIn_Window" Height="480" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid Background="white">
         <!-- Main Layout -->
         <Grid.ColumnDefinitions>
@@ -19,12 +20,13 @@
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="VISIT" 
                            Foreground="White" 
-                           FontSize="32" FontWeight="Bold" 
+                           FontSize="40" 
+                           FontWeight="Bold" 
                            Margin="0,0,0,20" 
                            TextAlignment="Center"/>
                 <TextBlock Text="Explore the world effortlessly. Discover top destinations, find the perfect stays, and plan your dream trip in just a few clicks."
                            Foreground="White" 
-                           FontSize="14" TextAlignment="Center" 
+                           FontSize="12" TextAlignment="Center" 
                            TextWrapping="Wrap" />
             </StackPanel>
         </Grid>
@@ -54,7 +56,7 @@
                              BorderThickness="1" 
                              Padding="5" 
                              Margin="0,0,0,15" />
-                    
+
 
                     <!-- Password Field -->
                     <TextBlock Text="Password" 
@@ -68,7 +70,7 @@
                                  BorderThickness="1" 
                                  Padding="5" 
                                  Margin="0,0,0,5" />
-                    
+
 
                     <!-- Login Button -->
                     <Button Content="Login" 
@@ -78,11 +80,18 @@
                             FontSize="16" FontWeight="Bold"
                             BorderThickness="0" 
                             Cursor="Hand" 
-                            Margin="0,10,0,0" 
+                            Margin="0,20,0,0" 
                             Click="SignInButton_Click"
                             Name="SignInButton"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
+        <ProgressBar Name="LoadingProgressBar" 
+             HorizontalAlignment="Center" 
+             VerticalAlignment="Center" 
+             Width="200" 
+             Height="10" 
+             IsIndeterminate="True" 
+             Visibility="Collapsed"/>
     </Grid>
 </Window>

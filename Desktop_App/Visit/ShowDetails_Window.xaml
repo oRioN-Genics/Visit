@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Visit"
         mc:Ignorable="d"
-        Title="Users with Travel Plans" Height="600" Width="900">
+        Title="Users with Travel Plans" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <DataGrid x:Name="UsersDataGrid" 
                   AutoGenerateColumns="False" 
@@ -37,13 +38,39 @@
                 <DataGridTextColumn Header="#" 
                                     Binding="{Binding Index}" 
                                     Width="40"/>
-                <DataGridTextColumn Header="Banned Status" 
+                <DataGridTextColumn Header="Access Status" 
                                     Binding="{Binding access_status}" 
                                     Width="auto">   
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
                             <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Style.Triggers>
+                                <!-- If access_status is 'Banned', set the text color to red -->
+                                <DataTrigger Binding="{Binding access_status}" Value="Banned">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="Black" 
+                                                              Direction="320" 
+                                                              ShadowDepth="1" 
+                                                              BlurRadius="2"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <!-- If access_status is 'Active', set the text color to green -->
+                                <DataTrigger Binding="{Binding access_status}" Value="Active">
+                                    <Setter Property="Foreground" Value="#39FF14"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="Black" 
+                                                              Direction="320" 
+                                                              ShadowDepth="1" 
+                                                              BlurRadius="2"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>

@@ -82,11 +82,24 @@ namespace Visit
                     string userId = selectedPlan.UserId;
 
                     string result = await ApiService.ToggleBanStatusAsync(userId);
-                    //refresh the datagrid
-                    if (UsersDataGrid.ItemsSource is List<TravelPlanDisplay> displayData)
+
+                    string updated_plans = await ApiService.GetUsersWithTravelPlansAsync();
+
+                    if (!string.IsNullOrWhiteSpace(updated_plans) && !updated_plans.StartsWith("Error"))
                     {
-                        UsersDataGrid.Items.Refresh();
+                        var updatedData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserTravelPlan>>(updated_plans);
+
+                        ShowDetails_Window showDetails_Window = new ShowDetails_Window(updatedData);
+                        showDetails_Window.Show();
+
+                        this.Close();
                     }
+                    else
+                    {
+                        MessageBox.Show("Failed to refresh data. Deserialization returned null.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                    this.Close();   
 
 
                     MessageBox.Show(result, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -122,12 +135,17 @@ namespace Visit
                         if (responseMessage.Contains("successfully"))
                         {
                             MessageBox.Show("Travel plan deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                            
-                            //refresh the datagrid
-                            if (UsersDataGrid.ItemsSource is List<TravelPlanDisplay> displayData)
+
+                            string updated_plans = await ApiService.GetUsersWithTravelPlansAsync();
+
+                            if (!string.IsNullOrWhiteSpace(updated_plans) && !updated_plans.StartsWith("Error"))
                             {
-                                displayData.Remove(selectedPlan);
-                                UsersDataGrid.Items.Refresh();
+                                var updatedData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserTravelPlan>>(updated_plans);
+
+                                ShowDetails_Window showDetails_Window = new ShowDetails_Window(updatedData);
+                                showDetails_Window.Show();
+
+                                this.Close();
                             }
                         }
                         else
