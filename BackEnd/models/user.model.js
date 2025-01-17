@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
         "Please enter a valid email address",
       ],
     },
+    access_status: {
+      type: String,
+      default: "Active",   // allow access by default
+    },
   },
   {
     timestamps: true,

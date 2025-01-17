@@ -3,14 +3,6 @@
   "WorkspaceRootPath": "E:\\Visit\\Desktop_App\\Visit\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|e:\\visit\\desktop_app\\visit\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|e:\\visit\\desktop_app\\visit\\signin_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|solutionrelative:signin_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|e:\\visit\\desktop_app\\visit\\showdetails_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|solutionrelative:showdetails_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,8 +15,16 @@
       "RelativeMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|solutionrelative:usertravelplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|e:\\visit\\desktop_app\\visit\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|e:\\visit\\desktop_app\\visit\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|solutionrelative:apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|e:\\visit\\desktop_app\\visit\\signin_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|solutionrelative:signin_window.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DD562DD-8130-48AF-8858-D90499D611EB}|Visit.csproj|e:\\visit\\desktop_app\\visit\\signin_window.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -42,24 +42,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SignIn_Window.xaml.cs",
-              "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\SignIn_Window.xaml.cs",
-              "RelativeDocumentMoniker": "SignIn_Window.xaml.cs",
-              "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\SignIn_Window.xaml.cs",
-              "RelativeToolTip": "SignIn_Window.xaml.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAADcAAAAYAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ShowDetails_Window.xaml.cs",
+              "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\ShowDetails_Window.xaml.cs",
+              "RelativeDocumentMoniker": "ShowDetails_Window.xaml.cs",
+              "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\ShowDetails_Window.xaml.cs",
+              "RelativeToolTip": "ShowDetails_Window.xaml.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAuwFUAAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T13:27:06.621Z",
+              "WhenOpened": "2025-01-15T17:35:18.055Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ShowDetails_Window.xaml",
               "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\ShowDetails_Window.xaml",
               "RelativeDocumentMoniker": "ShowDetails_Window.xaml",
@@ -71,54 +71,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ShowDetails_Window.xaml.cs",
-              "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\ShowDetails_Window.xaml.cs",
-              "RelativeDocumentMoniker": "ShowDetails_Window.xaml.cs",
-              "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\ShowDetails_Window.xaml.cs",
-              "RelativeToolTip": "ShowDetails_Window.xaml.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAqwEEAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T17:35:18.055Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserTravelPlan.cs",
-              "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\UserTravelPlan.cs",
-              "RelativeDocumentMoniker": "UserTravelPlan.cs",
-              "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\UserTravelPlan.cs",
-              "RelativeToolTip": "UserTravelPlan.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T17:59:30.459Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-14T12:11:47.124Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T12:11:47.124Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "ApiService.cs",
               "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\ApiService.cs",
               "RelativeDocumentMoniker": "ApiService.cs",
               "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\ApiService.cs",
               "RelativeToolTip": "ApiService.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAuwBAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAowG4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T02:46:33.663Z",
+              "WhenOpened": "2025-01-15T02:46:33.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserTravelPlan.cs",
+              "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\UserTravelPlan.cs",
+              "RelativeDocumentMoniker": "UserTravelPlan.cs",
+              "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\UserTravelPlan.cs",
+              "RelativeToolTip": "UserTravelPlan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T17:59:30.459Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SignIn_Window.xaml.cs",
+              "DocumentMoniker": "E:\\Visit\\Desktop_App\\Visit\\SignIn_Window.xaml.cs",
+              "RelativeDocumentMoniker": "SignIn_Window.xaml.cs",
+              "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\SignIn_Window.xaml.cs",
+              "RelativeToolTip": "SignIn_Window.xaml.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwDcAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-14T13:27:06.621Z"
             },
             {
               "$type": "Document",
@@ -129,8 +126,7 @@
               "ToolTip": "E:\\Visit\\Desktop_App\\Visit\\SignIn_Window.xaml",
               "RelativeToolTip": "SignIn_Window.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-14T13:16:39.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T13:16:39.863Z"
             },
             {
               "$type": "Document",

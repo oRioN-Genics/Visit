@@ -33,9 +33,25 @@ function SignIn() {
       alert(message);  
       navigate('/generate_trip');  // redirect to the GenerateTrip page
     } catch (error) {
-      setError(error.response.data.message);  
-      if (error.response.data.message === 'User not found. Please sign up.') {
-        navigate('/signup');  // redirect to SignUp page if user doesn't exist
+      if (error.response) {
+        switch (error.response.status) {
+          case 400:
+            setError(error.response.data.message);
+            if (error.response.data.message === 'User not found. Please sign up.') {
+              navigate('/signup');
+            }
+            break;
+          case 403:
+            setError('Your account has been banned. Please contact support.');
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("username");
+            alert("Your account has been banned. Please contact support.")
+            break;
+          default:
+            setError('An error occurred. Please try again.');
+        }
+      } else {
+        setError('An error occurred. Please try again.');
       }
     }
   };

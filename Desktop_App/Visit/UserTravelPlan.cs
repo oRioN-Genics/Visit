@@ -11,6 +11,7 @@ namespace Visit
         public string username { get; set; } = string.Empty;
         public string email { get; set; } = string.Empty;
         public List<TravelPlan> travelPlans { get; set; } = new List<TravelPlan>();
+        public string access_status { get; set; } = string.Empty;
     }
 
     public class TravelPlan

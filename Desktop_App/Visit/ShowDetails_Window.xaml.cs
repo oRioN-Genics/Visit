@@ -30,17 +30,14 @@ namespace Visit
             var displayData = new List<TravelPlanDisplay>();
             int index = 1;
 
-            // Group travel plans by user
             foreach (var user in userTravelPlans)
             {
-                // Iterate through each user's travel plans
                 foreach (var plan in user.travelPlans)
                 {
                     try
                     {
                         var tripData = JsonSerializer.Deserialize<JsonElement>(plan.trip);
 
-                        // Add a new entry for each travel plan, including user data
                         displayData.Add(new TravelPlanDisplay
                         {
                             Index = index++,
@@ -50,12 +47,13 @@ namespace Visit
                             Duration = tripData.GetProperty("duration").GetString() ?? "N/A",
                             Budget = tripData.GetProperty("budget").GetString() ?? "N/A",
                             TravelingWith = plan.userSelection.traveling_with.title,
-                            TravelId = plan._id
+                            TravelId = plan._id,
+                            UserId = plan.userId,
+                            access_status = user.access_status,
                         });
                     }
                     catch
                     {
-                        // Handle any parsing issues
                         displayData.Add(new TravelPlanDisplay
                         {
                             Index = index++,
@@ -65,14 +63,88 @@ namespace Visit
                             Duration = "N/A",
                             Budget = "N/A",
                             TravelingWith = plan.userSelection.traveling_with.title,
-                            TravelId = "N/A"
+                            TravelId = "N/A",
+                            UserId = plan.userId,
+                            access_status = "N/A",
                         });
                     }
                 }
             }
-
-            // Set the DataGrid's ItemsSource to display the grouped data
             UsersDataGrid.ItemsSource = displayData;
+        }
+
+        private async void Change_Access_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (UsersDataGrid.SelectedItem is TravelPlanDisplay selectedPlan)
+            {
+                try
+                {
+                    string userId = selectedPlan.UserId;
+
+                    string result = await ApiService.ToggleBanStatusAsync(userId);
+                    //refresh the datagrid
+                    if (UsersDataGrid.ItemsSource is List<TravelPlanDisplay> displayData)
+                    {
+                        UsersDataGrid.Items.Refresh();
+                    }
+
+
+                    MessageBox.Show(result, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a user from the DataGrid.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
+        private async void DeleteTripPlan_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (UsersDataGrid.SelectedItem is TravelPlanDisplay selectedPlan)
+            {
+                MessageBoxResult result = MessageBox.Show(
+                    $"Are you sure you want to delete the travel plan with ID '{selectedPlan.TravelId}'?",
+                    "Confirm Deletion",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        string responseMessage = await ApiService.DeleteTripAsync(selectedPlan.TravelId);
+
+                        if (responseMessage.Contains("successfully"))
+                        {
+                            MessageBox.Show("Travel plan deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            
+                            //refresh the datagrid
+                            if (UsersDataGrid.ItemsSource is List<TravelPlanDisplay> displayData)
+                            {
+                                displayData.Remove(selectedPlan);
+                                UsersDataGrid.Items.Refresh();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Failed to delete travel plan. Error: {responseMessage}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a travel plan to delete.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
     }
@@ -87,5 +159,8 @@ namespace Visit
         public string Budget { get; set; } = string.Empty;
         public string TravelingWith { get; set; } = string.Empty;
         public string TravelId { get; set; } = string.Empty;
+        public string UserId { get; set; } = string.Empty;
+        public string access_status { get; set; } = string.Empty;
+
     }
 }

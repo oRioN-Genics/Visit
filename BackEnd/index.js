@@ -68,24 +68,34 @@ app.post('/signup', async (req, res) => {
   app.post('/signin', async (req, res) => {
     const { username, password } = req.body;
   
-    const user = await User.findOne({ username });
+    try {
+        const user = await User.findOne({ username });
   
-    if (!user) {
-      return res.status(400).json({ message: 'User not found. Please sign up.' });
-    }
-  
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid password. Please try again.' });
-    }
+        if (!user) {
+            return res.status(400).json({ message: 'User not found. Please sign up.' });
+        }
 
-    const token = jwt.sign({ id: user._id }, "your_secret_key", { expiresIn: "1h" });
-    res.status(200).json({ 
-      message: 'Signed in successfully!',
-      token,
-      username: user.username,
-    });
-  });
+        if (user.banned) {
+            return res.status(403).json({ message: 'Your account has been banned. Please contact support.' });
+        }
+  
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid password. Please try again.' });
+        }
+  
+        const token = jwt.sign({ id: user._id }, "your_secret_key", { expiresIn: "1h" });
+        res.status(200).json({ 
+            message: 'Signed in successfully!',
+            token,
+            username: user.username,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 
   
   app.post('/api/travelPlans', authenticateToken, async (req, res) => {
@@ -128,13 +138,14 @@ app.post('/signup', async (req, res) => {
 
   app.get('/api/users-with-travel-plans', async (req, res) => {
     try {
-      const users = await User.find({}, 'username email'); 
+      const users = await User.find({}, 'username email access_status'); 
       const userTravelPlans = await Promise.all(
         users.map(async (user) => {
           const travelPlans = await TravelPlan.find({ userId: user._id });
           return {
             username: user.username,
             email: user.email,
+            access_status: user.access_status,
             travelPlans,
           };
         })
@@ -146,8 +157,56 @@ app.post('/signup', async (req, res) => {
       res.status(500).json({ message: "Error fetching users and their travel plans" });
     }
   });
-  
 
+
+  app.delete('/api/travelPlans/:tripID', async (req, res) => {
+    const tripID = req.params.tripID;
+  
+    try {
+      const travelPlan = await TravelPlan.findByIdAndDelete(tripID);
+  
+      if (!travelPlan) {
+        return res.status(404).json({ message: "Travel plan not found" });
+      }
+  
+      res.status(200).json({ message: "Travel plan deleted successfully!" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error deleting the travel plan" });
+    }
+  });
+
+
+  app.post('/api/users/:userID/toggle-ban', async (req, res) => {
+    const userID = req.params.userID;
+
+    try {
+        const user = await User.findById(userID);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // user.banned = !user.banned;
+        if (user.access_status == "Active") {
+          user.access_status = "Banned"    // user is banned
+        } else {
+          user.access_status = "Active"    // user is not banned
+        }
+
+        await user.save();
+
+        res.status(200).json({ 
+            message: `User ban status updated to ${user.banned ? 'banned' : 'unbanned'}.`,
+            banned: user.access_status,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error updating the user's ban status" });
+    }
+});
+
+  
 const dbURI = process.env.DB_URI;
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {

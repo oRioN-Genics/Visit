@@ -82,4 +82,50 @@ public static class ApiService
         }
     }
 
+
+    public static async Task<string> DeleteTripAsync(string tripID)
+    {
+        try
+        {
+            HttpResponseMessage response = await client.DeleteAsync($"/api/travelPlans/{tripID}");
+            string result = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                return "Travel plan deleted successfully!";
+            }
+            else
+            {
+                return $"Error: {result}";
+            }
+        }
+        catch (Exception ex)
+        {
+            return $"Exception: {ex.Message}";
+        }
+    }
+
+    public static async Task<string> ToggleBanStatusAsync(string userId)
+    {
+        try
+        {
+            HttpResponseMessage response = await client.PostAsync($"/api/users/{userId}/toggle-ban", null);
+
+            string result = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                return $"User ban status updated successfully.";
+            }
+            else
+            {
+                return $"Error: {result}";
+            }
+        }
+        catch (Exception ex)
+        {
+            return $"Exception: {ex.Message}";
+        }
+    }
+
 }

@@ -36,7 +36,17 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" 
                                     Binding="{Binding Index}" 
-                                    Width="50"/>
+                                    Width="40"/>
+                <DataGridTextColumn Header="Banned Status" 
+                                    Binding="{Binding access_status}" 
+                                    Width="auto">   
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Username" 
                                     Binding="{Binding Username}" 
                                     Width="*"/>
@@ -57,8 +67,30 @@
                                     Width="auto"/>
                 <DataGridTextColumn Header="Travel Id" 
                                     Binding="{Binding TravelId}" 
-                                    Width="auto"/>  
+                                    Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <!-- Buttons in the footer -->
+        <StackPanel 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,508,10,10">
+            <Button Content="Change Access" 
+                    Width="100" 
+                    Height="30" 
+                    Margin="0,0,10,0"
+                    Background="#FF5722"
+                    Foreground="White"
+                    Click="Change_Access_Button_Click"/>
+
+            <Button Content="Delete Trip Plan" 
+                    Width="100" 
+                    Height="30"
+                    Margin="0,0,10,0"
+                    Background="#D32F2F"
+                    Foreground="White"
+                    Click="DeleteTripPlan_Button_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
