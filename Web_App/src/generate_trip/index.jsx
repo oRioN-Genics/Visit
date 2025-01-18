@@ -13,6 +13,7 @@ function GenerateTrip() {
 
   const [formData, setFormData] = useState([]);
   const [toastMessage, setToastMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (name, value) => {
@@ -46,6 +47,8 @@ function GenerateTrip() {
       return;
     }
 
+    setLoading(true);
+
     const PROMPT = AI_PROMPT
     .replace('{place}', formData?.place?.label)
     .replace('{duration}', formData?.duration)
@@ -55,10 +58,19 @@ function GenerateTrip() {
 
     console.log(PROMPT);
 
-    const result = await chatSession.sendMessage(PROMPT);
-    SaveGeneratedTrip(result?.response?.text());
+    // const result = await chatSession.sendMessage(PROMPT);
+    // SaveGeneratedTrip(result?.response?.text());
 
-    console.log(result?.response?.text());
+    // console.log(result?.response?.text());
+    try {
+      const result = await chatSession.sendMessage(PROMPT);
+      await SaveGeneratedTrip(result?.response?.text()); // Wait for saving to complete
+    } catch (error) {
+      console.error('Error generating trip:', error);
+      setToastMessage('An error occurred while generating the trip.');
+    } finally {
+      setLoading(false); // stop loading
+    }
   }
 
   const SaveGeneratedTrip = async (trip) => {
@@ -155,8 +167,9 @@ function GenerateTrip() {
 
       <div style={{display: 'flex', justifyContent: 'flex-end'}}>
         <button onClick={OnGenerateTrip} 
-                style={{marginTop: '20px'}}>
-                  Generate Trip
+                style={{marginTop: '20px'}}
+                disabled={loading}>
+                  {loading ? 'Generating...' : 'Generate Trip'}
         </button>
         <Toast message={toastMessage} 
                 onClose={() => setToastMessage('')} />

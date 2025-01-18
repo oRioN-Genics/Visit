@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SignIn.css';
 import { useNavigate } from 'react-router-dom';
+import Toast from '../Toast';
 
 function SignIn() {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
-  const [error, setError] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
   const navigate = useNavigate();  // Initialize navigate
 
   const handleChange = (e) => {
@@ -36,22 +37,21 @@ function SignIn() {
       if (error.response) {
         switch (error.response.status) {
           case 400:
-            setError(error.response.data.message);
             if (error.response.data.message === 'User not found. Please sign up.') {
               navigate('/signup');
             }
             break;
           case 403:
-            setError('Your account has been banned. Please contact support.');
+            setToastMessage('Your account has been banned. Please contact support.');
             localStorage.removeItem("authToken");
             localStorage.removeItem("username");
-            alert("Your account has been banned. Please contact support.")
+            setToastMessage('Your account has been banned. Please contact support.');
             break;
           default:
-            setError('An error occurred. Please try again.');
+            setToastMessage('An error occurred. Please try again.');
         }
       } else {
-        setError('An error occurred. Please try again.');
+        setToastMessage('An error occurred. Please try again.');
       }
     }
   };
@@ -86,11 +86,12 @@ function SignIn() {
                    value={formData.password}
                    onChange={handleChange}
                    required />
-            <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
+            {/* <a href="/forgot-password" className="forgot-password">Forgot Password?</a> */}
           </div>
           <button type="submit" className="signin-button">Login</button>
         </form>
       </div>
+      <Toast message={toastMessage} onClose={() => setToastMessage("")} />
     </div>
   );
 }

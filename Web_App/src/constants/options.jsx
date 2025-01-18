@@ -52,22 +52,22 @@ export const SelectBudgetStyles = [
 
 export const AI_PROMPT = `Generate a detailed travel plan for location: {place}, for {duration} days for a {traveling_with} ({numOfPeople}) with a {budget} budget. 
 
-1. **Hotel List:**
-   - **Hotel Name**
-   - **Address**
-   - **Price** (per night)
-   - **Image URL**
-   - **Geo Coordinates** (latitude, longitude)
-   - **Rating**
-   - **Description**
+1. Hotel List:
+   - Hotel Name
+   - Address
+   - Price (per night)
+   - Image URL
+   - Geo Coordinates (latitude, longitude)
+   - Rating
+   - Description
 
 2. Itinerary:
-   - **Place Name**
-   - **Details** (brief description of the place)
-   - **Image URL**
-   - **Geo Coordinates** (latitude, longitude)
-   - **Ticket Pricing** (if applicable)
-   - **Time to Travel** (between locations)
-   - **Best Time to Visit** (month, season, or time of day)
+   - Place Name
+   - Details (brief description of the place)
+   - Image URL
+   - Geo Coordinates (latitude, longitude)
+   - Ticket Pricing (if applicable)
+   - Time to Travel (between locations)
+   - Best Time to Visit (month, season, or time of day)
 
 Provide the output in **JSON format**.`;

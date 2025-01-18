@@ -19,5 +19,103 @@
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     line-height: 1.5; 
     margin-top: 10px; 
-  }
-  
+}
+
+.hero-swiper {
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.swiper-slide {
+    transform: scale(0.9); 
+    transition: transform 0.3s ease;
+}
+
+.swiper-slide-active {
+    transform: scale(1); 
+}
+
+.hero-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #6986f1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #5566d0;
+}
+
+.swiper-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    bottom: 20px; 
+    z-index: 5;
+}
+
+.swiper-pagination-bullet {
+    background-color: #ccc;
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #6986f1;
+}
+
+/* Navigation Button Styles */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    bottom: 0; 
+    z-index: 10;
+    font-size: 24px;
+    font-weight: bold;
+    color: #6986f1;
+    cursor: pointer;
+    user-select: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.swiper-button-prev {
+    left: calc(50% - 150px); 
+}
+
+.swiper-button-next {
+    right: calc(50% - 150px); 
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: #6986f1;
+    color: #fff;
+}

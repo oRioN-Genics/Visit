@@ -98,10 +98,10 @@
     color: #007BFF;
     text-decoration: none;
   }
-  
+/*   
   .forgot-password:hover {
     text-decoration: underline;
-  }
+  } */
   
   
   .checkbox-group label {
@@ -112,6 +112,7 @@
   /* Button styling */
   .signin-button {
     margin-left: 13px;
+    margin-top: 20px;
     width: 100%;
     padding: 0.8rem;
     font-size: 1rem;
@@ -125,5 +126,59 @@
   
   .signin-button:hover {
     background-color: #104a89;
+  }
+
+  /* Toast Component */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate(20px, 20px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  @keyframes vibrate {
+    0% {
+      transform: translateX(0);
+    }
+    10% {
+      transform: translateX(-8px);
+    }
+    20% {
+      transform: translateX(8px);
+    }
+    30% {
+      transform: translateX(-8px);
+    }
+    40% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-8px);
+    }
+    70% {
+    transform: translateX(8px);
+    }
+    85% {
+    transform: translateX(-8px);
+    }
+    100% {
+    transform: translateX(0);
+    }
+  }
+  
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translate(20px, 20px) scale(0.9);
+    }
   }
   
