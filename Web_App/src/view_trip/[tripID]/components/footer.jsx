@@ -12,7 +12,7 @@ function Footer() {
         <p className="footer-text">Email: sathsara2021@gmail.com</p>
         <p className="footer-text">
           Follow me on:
-          <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="social-link">
+          <a href="www.linkedin.com/in/sathsara-anuradha-275a05278" target="_blank" rel="noopener noreferrer" className="social-link">
             LinkedIn
           </a> |
           <a href="https://github.com/oRioN-Genics" target="_blank" rel="noopener noreferrer" className="social-link">
